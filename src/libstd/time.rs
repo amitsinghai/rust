@@ -572,7 +572,7 @@ priv fn do_strptime(s: &str, format: &str) -> Result<Tm, ~str> {
             match match_digits(s, pos, 1u, false) {
               Some(item) => {
                 let (v, pos) = item;
-                tm.tm_wday = v;
+                tm.tm_wday = v-1_i32;
                 Ok(pos)
               }
               None => Err(~"Invalid day of week")
@@ -611,7 +611,7 @@ priv fn do_strptime(s: &str, format: &str) -> Result<Tm, ~str> {
             match match_digits(s, pos, 2u, false) {
               Some(item) => {
                 let (v, pos) = item;
-                tm.tm_year = v - 1900_i32;
+                tm.tm_year = v;
                 Ok(pos)
               }
               None => Err(~"Invalid year")
