@@ -481,7 +481,7 @@ priv fn do_strptime(s: &str, format: &str) -> Result<Tm, ~str> {
                 tm.tm_yday = v - 1_i32;
                 Ok(pos)
               }
-              None => Err(~"Invalid year")
+              None => Err(~"Invalid day of year")
             }
           }
           'k' => {
@@ -575,7 +575,7 @@ priv fn do_strptime(s: &str, format: &str) -> Result<Tm, ~str> {
                 tm.tm_wday = v;
                 Ok(pos)
               }
-              None => Err(~"Invalid weekday")
+              None => Err(~"Invalid day of week")
             }
           }
           'v' => {
@@ -590,7 +590,7 @@ priv fn do_strptime(s: &str, format: &str) -> Result<Tm, ~str> {
             // FIXME (#2350): range check.
             match match_digits(s, pos, 1u, false) {
               Some(item) => { let (v, pos) = item; tm.tm_wday = v; Ok(pos) }
-              None => Err(~"Invalid weekday")
+              None => Err(~"Invalid day of week")
             }
           }
           //'X' {}
@@ -603,7 +603,7 @@ priv fn do_strptime(s: &str, format: &str) -> Result<Tm, ~str> {
                 tm.tm_year = v - 1900_i32;
                 Ok(pos)
               }
-              None => Err(~"Invalid weekday")
+              None => Err(~"Invalid year")
             }
           }
           'y' => {
@@ -614,7 +614,7 @@ priv fn do_strptime(s: &str, format: &str) -> Result<Tm, ~str> {
                 tm.tm_year = v - 1900_i32;
                 Ok(pos)
               }
-              None => Err(~"Invalid weekday")
+              None => Err(~"Invalid year")
             }
           }
           'Z' => {
