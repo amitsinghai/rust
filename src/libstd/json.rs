@@ -1228,7 +1228,7 @@ mod tests {
     use core::hashmap::linear::LinearMap;
 
     fn mk_object(items: &[(~str, Json)]) -> Json {
-        let mut d = LinearMap::new();
+        let mut d = ~LinearMap::new();
 
         for items.each |item| {
             match *item {
