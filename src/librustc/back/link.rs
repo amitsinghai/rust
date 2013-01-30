@@ -860,9 +860,9 @@ fn link_binary(sess: Session,
     }
 
     // Stack growth requires statically linking a __morestack function
-    if sess.targ_cfg.os != session::os_android {
+    //if sess.targ_cfg.os != session::os_android {
     cc_args.push(~"-lmorestack");
-    }
+    //}
 
     // FIXME (#2397): At some point we want to rpath our guesses as to where
     // extern libraries might live, based on the addl_lib_search_paths

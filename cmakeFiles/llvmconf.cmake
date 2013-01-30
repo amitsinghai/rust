@@ -45,7 +45,7 @@ IF(NOT ${HostCpuType} MATCHES x86_64)
 ENDIF()
 
 ADD_CUSTOM_TARGET(
-    llvm
+    llvmconf
     COMMAND
         ${CMAKE_COMMAND} -E make_directory ${llvmBuildDir}
     COMMAND
@@ -55,10 +55,12 @@ ADD_CUSTOM_TARGET(
         export CXXFLAGS="${llvmCXXFLAGS}"
         export LDFLAGS="${llvmLDFLAGS}"
         && cd ${llvmBuildDir} 
-        && make -C ${llvmBuildDir} ${llvmBuildEnv} ${BuildParallel}
-    COMMENT "Building llvm"
+        && ${llvmSrcDir}/configure ${llvmFlags}
+    COMMENT "Building llvmconf"
     )
+
 ADD_DEPENDENCIES(
-        llvm
+	llvmconf
+
 	configureSubmodules
 	)

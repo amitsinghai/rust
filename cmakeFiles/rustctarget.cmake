@@ -80,7 +80,7 @@ MACRO(doBuildStage stage)
 	#doBuildRustLib(${stage} rustc syntax)
 
 	ADD_DEPENDENCIES(${TargetTriple}_libcore${stage}
-		#${TargetTriple}_morestackCopy
+		${TargetTriple}_morestackCopy
 		${TargetTriple}_rustrtCopy
 		${TargetTriple}_rustllvmCopy
 		)

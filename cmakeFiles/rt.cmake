@@ -55,27 +55,18 @@ MACRO(doBuildRustrt type)
 	SET(${triple}rtObjects "")
 	
 	# morestack used?
-	IF(${cpuType} STREQUAL arm)
-		SET(useMorestack false)
-	ELSE()
-		SET(useMorestack true)
-	ENDIF()
+
+	SET(useMorestack true)
 
 	# assembly source files
-	IF(${useMorestack}) 
-		SET(rtSS
-			arch/${archType}/morestack.S
-			arch/${archType}/_context.S
-			arch/${archType}/ccall.S
-			arch/${archType}/record_sp.S
-			)
-	ELSE()
-		SET(rtSS
-			arch/${archType}/_context.S
-			arch/${archType}/ccall.S
-			arch/${archType}/record_sp.S
-			)
-	ENDIF()
+
+	SET(rtSS
+		arch/${archType}/morestack.S
+		arch/${archType}/_context.S
+		arch/${archType}/ccall.S
+		arch/${archType}/record_sp.S
+	)
+
 
 	# compile assembly
 	FOREACH(s ${rtSS})
@@ -270,7 +261,7 @@ MACRO(doBuildRustrt type)
 		${triple}_rustrt
 		)
 
-	IF(${useMorestack})
+
 		# copy libmorestack to stage0 output
 		SET(ss ${rtDir}/${s})
 		SET(bd ${BuildRtDir}/${triple}/${spath})
@@ -304,7 +295,7 @@ MACRO(doBuildRustrt type)
 				${${triple}morestackOut1}
 				${${triple}morestackOut2}
 			)
-	ENDIF()
+
 
 ENDMACRO(doBuildRustrt)
 
